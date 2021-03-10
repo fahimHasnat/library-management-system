@@ -32,6 +32,13 @@ A library managemnt API implemented with NodeJS.
    ```
 This seeder file will populate the database with necessary data to run the application.
 
+### Step
+* run
+```sh
+   npm start
+   ```
+Now you can try out the different features of the application.
+
 ## Usage
 * For Admin access login with **username** : Admin and **pass** : "1234"
 * For User access login with **username** : User and **pass** : "1234"
