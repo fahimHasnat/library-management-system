@@ -4,6 +4,9 @@ const bcrypt = require('bcryptjs');
 const AuditLog = require('../util/audit');
 const BookLoan = require('../models/BookLoan');
 
+/**
+ * Upload a picture
+ */
 exports.uploadPic = async (req, res, next) => {
     try {
 
@@ -25,6 +28,10 @@ exports.uploadPic = async (req, res, next) => {
 
 };
 
+/**
+ * Add a new user
+ * Restrict adding if the username already exists
+ */
 exports.addUser = async (req, res, next) => {
     try {
 
@@ -66,6 +73,10 @@ exports.addUser = async (req, res, next) => {
     }
 };
 
+/**
+ * Update a new user
+ * Restrict updating if the username already exists
+ */
 exports.updateUser = async (req, res, next) => {
     try {
 
@@ -96,6 +107,9 @@ exports.updateUser = async (req, res, next) => {
     }
 };
 
+/**
+ * Deactivate own account
+ */
 exports.deactivateUser = async (req, res, next) => {
     try {
 
@@ -140,6 +154,9 @@ exports.deactivateUser = async (req, res, next) => {
     }
 };
 
+/**
+ * Get the user list
+ */
 exports.getUserList = async (req, res, next) => {
     try {
 
@@ -157,6 +174,9 @@ exports.getUserList = async (req, res, next) => {
     }
 };
 
+/**
+ * Activate an User
+ */
 exports.activateUser = async (req, res, next) => {
     try {
 
@@ -187,6 +207,9 @@ exports.activateUser = async (req, res, next) => {
     }
 };
 
+/**
+ * Get a user by id
+ */
 exports.getUser = async (req, res, next) => {
     try {
 
@@ -211,6 +234,9 @@ exports.getUser = async (req, res, next) => {
     }
 };
 
+/**
+ * Get own user profile
+ */
 exports.getProfile = async (req, res, next) => {
     try {
 

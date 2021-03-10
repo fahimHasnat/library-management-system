@@ -2,6 +2,9 @@ const Category = require('../models/Category');
 const { requiredError } = require('../services/requiredError');
 const AuditLog = require('../util/audit');
 
+/**
+ * View category list
+ */
 exports.getCategoryList = async (req, res, next) => {
     try {
 
@@ -19,6 +22,10 @@ exports.getCategoryList = async (req, res, next) => {
     }
 }
 
+/**
+ * Add a new category
+ * restrict adding if the category already exists
+ */
 exports.addCategory = async (req, res, next) => {
     try {
 
@@ -67,6 +74,10 @@ exports.addCategory = async (req, res, next) => {
     }
 }
 
+/**
+ * Update a category 
+ * Restrict updating if the updated name already exists
+ */
 exports.updateCategory = async (req, res, next) => {
     try {
 
@@ -115,6 +126,9 @@ exports.updateCategory = async (req, res, next) => {
     }
 }
 
+/**
+ * Delete a category
+ */
 exports.deleteCategory = async (req, res, next) => {
     try {
         const deleteCategory = await Category.destroy(

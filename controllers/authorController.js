@@ -4,6 +4,9 @@ const AuditLog = require('../util/audit');
 const Book = require('../models/Book');
 const { Op } = require('sequelize');
 
+/**
+ * Create a new Author
+ */
 exports.addAuthor = async (req, res, next) => {
     try {
         const { name } = req.body;
@@ -39,6 +42,9 @@ exports.addAuthor = async (req, res, next) => {
     }
 }
 
+/**
+ * Update an Author
+ */
 exports.updateAuthor = async (req, res, next) => {
     try {
         const { author_id, name } = req.body;
@@ -78,6 +84,10 @@ exports.updateAuthor = async (req, res, next) => {
     }
 }
 
+/**
+ * Delete an Author
+ * Restrict deleting if the author has any book in the books table
+ */
 exports.deleteAuthor = async (req, res, next) => {
     try {
         const exist = await Book.findOne({
@@ -117,6 +127,9 @@ exports.deleteAuthor = async (req, res, next) => {
     }
 }
 
+/**
+ * Get Author List
+ */
 exports.getAuthors = async (req, res, next) => {
     try {
         const authors = await Author.findAll();

@@ -14,6 +14,7 @@ exports.postLogin = async (req, res, next) => {
             }
         });
 
+        // if the username doesn't match with any document in the db
         if (!user) {
             const error = new Error("This Account Doesn't Exist");
             error.statusCode = 404;
@@ -21,6 +22,7 @@ exports.postLogin = async (req, res, next) => {
             throw error;
         }
 
+        // if the user's acive status is false
         if (user.active_status != true) {
             const error = new Error('Sorry. Your account is deactivated');
             error.statusCode = 404;
@@ -28,8 +30,10 @@ exports.postLogin = async (req, res, next) => {
             throw error;
         }
 
+        // Matching the encrypted password
         const isEqual = await bcrypt.compare(pass, user.pass);
 
+        // If the password is incorrect
         if (!isEqual) {
             const error = new Error("User ID or Password is incorrect.!");
             error.statusCode = 401;
@@ -47,10 +51,9 @@ exports.postLogin = async (req, res, next) => {
 
         const roleAccess = await Role.findByPk(user.role_id);
 
-        // AuditLog.postAuditLog(req, "web", "login");
         AuditLog.postAuditLog({ user: { id: user.id }, useragent: { browser: req.useragent.browser } }, "web", "login");
 
-
+        // responding with all the access this user has
         res.status(200).json({
             token: token,
             id: user.id,
@@ -61,7 +64,8 @@ exports.postLogin = async (req, res, next) => {
                 book: roleAccess.book,
                 author: roleAccess.author,
                 category: roleAccess.category,
-                role: roleAccess.role
+                role: roleAccess.role,
+                bookloan: roleAccess.bookloan
             }
         });
 

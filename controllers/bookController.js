@@ -7,6 +7,10 @@ const { requiredError } = require('../services/requiredError');
 const AuditLog = require('../util/audit');
 const BookLoan = require('../models/BookLoan');
 
+/**
+ * Add a new book
+ * Restrict adding if the book name already exist
+ */
 exports.addBook = async (req, res, next) => {
     try {
 
@@ -55,6 +59,10 @@ exports.addBook = async (req, res, next) => {
     }
 }
 
+/**
+ * Update a new book
+ * Restrict updating if the book name already exist
+ */
 exports.updateBook = async (req, res, next) => {
     try {
 
@@ -94,6 +102,10 @@ exports.updateBook = async (req, res, next) => {
     }
 }
 
+/**
+ * Delete a new book
+ * Restrict deleting if the book is loaned to anyone
+ */
 exports.deleteBook = async (req, res, next) => {
     try {
 
@@ -137,6 +149,9 @@ exports.deleteBook = async (req, res, next) => {
     }
 }
 
+/**
+ * Get the book list
+ */
 exports.getBooks = async (req, res, next) => {
     try {
 
@@ -180,6 +195,9 @@ exports.getBooks = async (req, res, next) => {
     }
 }
 
+/**
+ * Get a book by id
+ */
 exports.getBook = async (req, res, next) => {
     try {
         const book = await sequelize.query(`
@@ -226,6 +244,9 @@ exports.getBook = async (req, res, next) => {
     }
 }
 
+/**
+ * Search by author/book/category
+ */
 exports.search = async (req, res, next) => {
     try {
 

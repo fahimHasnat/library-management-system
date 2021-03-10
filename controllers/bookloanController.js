@@ -13,6 +13,10 @@ const statusType = {
     "4": "accepted"
 }
 
+/**
+ * Request a book
+ * Restrict requesting if the book is already pending for the same user
+ */
 exports.requestBook = async (req, res, next) => {
     try {
         const { from_date, to_date, book_id } = req.body;
@@ -71,6 +75,9 @@ exports.requestBook = async (req, res, next) => {
     }
 }
 
+/**
+ * Reject a request
+ */
 exports.rejectBookLoan = async (req, res, next) => {
     try {
 
@@ -108,6 +115,9 @@ exports.rejectBookLoan = async (req, res, next) => {
     }
 }
 
+/**
+ * Accept a request
+ */
 exports.acceptBookLoan = async (req, res, next) => {
     try {
 
@@ -150,6 +160,9 @@ exports.acceptBookLoan = async (req, res, next) => {
     }
 }
 
+/**
+ * Return a book-loan
+ */
 exports.returnBookLoan = async (req, res, next) => {
     try {
 
@@ -192,6 +205,9 @@ exports.returnBookLoan = async (req, res, next) => {
     }
 }
 
+/**
+ * View book loan for the logged in user
+ */
 exports.myBookLoans = async (req, res, next) => {
     try {
         const loanList = await BookLoan.findAll({
@@ -200,6 +216,13 @@ exports.myBookLoans = async (req, res, next) => {
             }
         });
 
+        if (loanList.length != 0) {
+            loanList = loanList.map(x => {
+                x.status = statusType[x.status];
+                return x;
+            })
+        }
+
         res.status(200).json(loanList);
 
     } catch (err) {
@@ -210,6 +233,9 @@ exports.myBookLoans = async (req, res, next) => {
     }
 }
 
+/**
+ * view book loans by user id
+ */
 exports.specificBookLoans = async (req, res, next) => {
     try {
         const loanList = await BookLoan.findAll({
@@ -218,6 +244,11 @@ exports.specificBookLoans = async (req, res, next) => {
             }
         });
 
+        loanList = loanList.map(x => {
+            x.status = statusType[x.status];
+            return x;
+        })
+
         res.status(200).json(loanList);
 
     } catch (err) {
@@ -228,6 +259,9 @@ exports.specificBookLoans = async (req, res, next) => {
     }
 }
 
+/**
+ * Export all the book loans
+ */
 exports.bookLoanExport = async (req, res, next) => {
     try {
 

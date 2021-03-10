@@ -3,6 +3,9 @@ const User = require('../models/User');
 const { requiredError } = require('../services/requiredError');
 const AuditLog = require('../util/audit');
 
+/**
+ * View role list
+ */
 exports.getRoleList = async (req, res, next) => {
     try {
 
@@ -20,6 +23,10 @@ exports.getRoleList = async (req, res, next) => {
     }
 }
 
+/**
+ * Add a new role
+ * Restrict adding if the role already exists
+ */
 exports.addRole = async (req, res, next) => {
     try {
 
@@ -68,6 +75,9 @@ exports.addRole = async (req, res, next) => {
     }
 }
 
+/**
+ * Update a role
+ */
 exports.updateRole = async (req, res, next) => {
     try {
 
@@ -107,6 +117,10 @@ exports.updateRole = async (req, res, next) => {
     }
 }
 
+/**
+ * Delete a role
+ * Restrict deleting if a user is assigned to this role
+ */
 exports.deleteRole = async (req, res, next) => {
     try {
         const deleteRole = await Role.destroy(
@@ -135,6 +149,9 @@ exports.deleteRole = async (req, res, next) => {
     }
 }
 
+/**
+ * Assign a role to a user
+ */
 exports.assignRole = async (req, res, next) => {
     try {
         const { role_id, user_id } = req.body;
