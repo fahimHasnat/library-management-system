@@ -192,6 +192,42 @@ exports.returnBookLoan = async (req, res, next) => {
     }
 }
 
+exports.myBookLoans = async (req, res, next) => {
+    try {
+        const loanList = await BookLoan.findAll({
+            where: {
+                user_id: req.user.id
+            }
+        });
+
+        res.status(200).json(loanList);
+
+    } catch (err) {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    }
+}
+
+exports.specificBookLoans = async (req, res, next) => {
+    try {
+        const loanList = await BookLoan.findAll({
+            where: {
+                user_id: req.params.id
+            }
+        });
+
+        res.status(200).json(loanList);
+
+    } catch (err) {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    }
+}
+
 exports.bookLoanExport = async (req, res, next) => {
     try {
 
