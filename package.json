@@ -1,0 +1,35 @@
+{
+  "name": "library-management-system",
+  "version": "1.0.0",
+  "description": "Assessment Project of Evaly",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "mocha"
+  },
+  "author": "Fahim Hasnat",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-useragent": "^1.0.15",
+    "fuse.js": "^6.4.6",
+    "helmet": "^4.4.1",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "node-excel-export": "^1.4.4",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.5.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.3",
+    "chai-http": "^4.3.0",
+    "mocha": "^8.3.1",
+    "nodemon": "^2.0.7"
+  }
+}
