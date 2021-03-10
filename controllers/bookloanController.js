@@ -210,7 +210,7 @@ exports.returnBookLoan = async (req, res, next) => {
  */
 exports.myBookLoans = async (req, res, next) => {
     try {
-        const loanList = await BookLoan.findAll({
+        let loanList = await BookLoan.findAll({
             where: {
                 user_id: req.user.id
             }
@@ -238,7 +238,7 @@ exports.myBookLoans = async (req, res, next) => {
  */
 exports.specificBookLoans = async (req, res, next) => {
     try {
-        const loanList = await BookLoan.findAll({
+        let loanList = await BookLoan.findAll({
             where: {
                 user_id: req.params.id
             }

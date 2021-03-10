@@ -31,7 +31,7 @@ let roleData = [
         author: [1, 2, 3, 4],
         role: [1, 2, 3, 4, 16],
         category: [1, 2, 3, 4],
-        bookloan: [10, 11, 12, 13, 14, 15]
+        bookloan: [2, 10, 11, 12, 13, 14, 15]
     },
     {
         name: 'User',
